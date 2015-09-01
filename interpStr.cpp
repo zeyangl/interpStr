@@ -78,12 +78,6 @@ static std::vector<Range> parseRange(const std::string& rangeStr)
     return stuff;
 }
 
-//------------------------------------------
-// interpolate a string
-// accept only 1 interpolation markup
-// in the format of abcdeafe[1-10, 15, 16-20]
-// white spaces are ignored
-//------------------------------------------
 std::vector<std::string> interpStr(const std::string& path) 
 {
     std::vector<Range> rangeList;
