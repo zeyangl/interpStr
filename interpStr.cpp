@@ -99,17 +99,23 @@ std::vector<std::string> interpStr(const std::string& path)
         rangeList.insert(rangeList.end(), range.begin(), range.end());
     }
 
+    
     std::vector<std::string> expand;
-
+    
     for(const Range& r : rangeList) {
-        for(int i=r.begin; i<=r.end; i++) {
-            
+        int diff = 1;
+        if (r.begin>r.end)
+            diff = -1;
+        int i = r.begin;
+        do{
             std::stringstream ss;
             ss << std::setw(r.padding+1) << std::setfill('0') << std::to_string(i);
             std::string out = std::regex_replace(path, re, ss.str());
             expand.push_back(out);
-        }
+            i += diff;
+        } while (i != r.end);
     }
+
 
     return expand;
 }
