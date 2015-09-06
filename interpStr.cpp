@@ -102,12 +102,18 @@ std::vector<std::string> interpStr(const std::string& path)
     std::vector<std::string> expand;
 
     for(const Range& r : rangeList) {
-        for(int i=r.begin; i<=r.end; i++) {
-            
+
+        int i = r.begin;
+        int diff = r.begin <= r.end ? 1 : -1;
+
+        // r.end + diff is needed due to closed range rule
+        while(i != (r.end + diff)) {
             std::stringstream ss;
             ss << std::setw(r.padding+1) << std::setfill('0') << std::to_string(i);
             std::string out = std::regex_replace(path, re, ss.str());
             expand.push_back(out);
+            
+            i += diff;
         }
     }
 
