@@ -107,9 +107,9 @@ std::vector<std::string> interpStr(const std::string& path)
         if (r.begin>r.end){
             diff = -1;
         }
-        else if (r.begin == r.end)
-            diff = 0;
-        
+            else if (r.begin == r.end)
+                diff = 0;
+            
         int i = r.begin - diff;
         do{
             i += diff;
@@ -117,7 +117,7 @@ std::vector<std::string> interpStr(const std::string& path)
             ss << std::setw(r.padding+1) << std::setfill('0') << std::to_string(i);
             std::string out = std::regex_replace(path, re, ss.str());
             expand.push_back(out);
-            
+
         } while (i != r.end);
     }
 
